@@ -18,8 +18,11 @@ public class TaskGroup {
     // mapped - pokazanie ze wewnatrztaska grupa zmapowana jest jako pole grup
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="group")
     private Set<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 
-    TaskGroup() {
+    public TaskGroup() {
     }
 
     public int getId() {
@@ -31,7 +34,7 @@ public class TaskGroup {
     public String getDescription() {
         return description;
     }
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
     public boolean isDone() {
@@ -45,6 +48,14 @@ public class TaskGroup {
     }
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }
 

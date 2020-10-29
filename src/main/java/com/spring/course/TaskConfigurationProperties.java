@@ -15,10 +15,10 @@ public class TaskConfigurationProperties {
     public Template getTemplate() {
         return template;
     }
-
     public void setTemplate(final Template template) {
         this.template = template;
     }
+
     //klasa pomocnicza zeby dostac sie do propertisa - nie trzeba tego uzywac
    public static class Template {
         private boolean allowMultipleTasks;
@@ -26,7 +26,6 @@ public class TaskConfigurationProperties {
          public boolean isAllowMultipleTasks() {
             return allowMultipleTasks;
         }
-
        public void setAllowMultipleTasks(final boolean allowMultipleTasks) {
             this.allowMultipleTasks = allowMultipleTasks;
         }

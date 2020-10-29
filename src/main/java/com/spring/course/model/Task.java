@@ -28,8 +28,15 @@ public class Task  {
     @JoinColumn(name = "task_group_id")
     private TaskGroup group;
 
+
     //konstruktor potrzebny jest do hibernate
-    Task() {
+   public Task() {
+    }
+
+    // konstruktor ktory pozwoli stworzyc taska na podstawie description i deadline
+    public Task(@NotBlank(message = "Task's description must not be null and not empty") String description, LocalDateTime deadline) {
+        this.description = description;
+        this.deadline = deadline;
     }
 
     public int getId() {
