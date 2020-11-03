@@ -15,8 +15,9 @@ public class TodoAppApplication {
 	}
 
 	@Bean
-	Validator validator() { //obiekt validator bedzie zarzadzalny przez springs dizieki adnotacjii bean. W klasie z konfoguracjia powinno znalezc sie cos takiego
+	Validator validator() { //obiekt validator bedzie zarzadzalny przez springs dizieki adnotacjii bean. W klasie z konfoguracjia (rowniez z adnotaja SpringBootApplication) powinno znalezc sie cos takiego
 		return new LocalValidatorFactoryBean();
+		
 	}
 	}
 

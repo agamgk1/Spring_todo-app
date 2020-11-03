@@ -3,9 +3,11 @@ package com.spring.course.controller;
 import com.spring.course.TaskConfigurationProperties;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/info")
 class InfoController {
     // @value zasilenie pola propertisem. W klamrach nazwa propertisa
     //DataSourceProperties specjalna klsa do uzywania propertisow. Sama pobiera propertisy z .yml
@@ -19,12 +21,12 @@ class InfoController {
         this.myProp = myProp;
     }
 
-    @GetMapping("/info/url")
+    @GetMapping("/url")
     String url() {
         return dataSource.getUrl();
     }
 
-    @GetMapping("/info/prop")
+    @GetMapping("/prop")
     boolean myProp() {
         return myProp.getTemplate().isAllowMultipleTasks();
     }

@@ -33,10 +33,17 @@ public class Task  {
    public Task() {
     }
 
-    // konstruktor ktory pozwoli stworzyc taska na podstawie description i deadline
-    public Task(@NotBlank(message = "Task's description must not be null and not empty") String description, LocalDateTime deadline) {
+    public Task(String description, LocalDateTime deadline) {
+        this(description, deadline, null);
+    }
+
+    // konstruktor ktory pozwoli stworzyc taska na podstawie description i deadline i taskGroup
+    public Task(@NotBlank(message = "Task's description must not be null and not empty") String description, LocalDateTime deadline, TaskGroup group) {
         this.description = description;
         this.deadline = deadline;
+        if(group != null) {
+            this.group = group;
+        }
     }
 
     public int getId() {

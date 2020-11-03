@@ -1,13 +1,14 @@
 package com.spring.course.model.projection;
 
 import com.spring.course.model.Task;
+import com.spring.course.model.TaskGroup;
 
 import java.time.LocalDateTime;
 
 
 // Faktyczny task powstaje wlasnie z tego Grouptaska
 // task wysylany w obrebie grupy
-class GroupTaskWriteModel {
+public class GroupTaskWriteModel {
     private String description;
     private LocalDateTime deadline;
 
@@ -27,8 +28,8 @@ class GroupTaskWriteModel {
         this.deadline = deadline;
     }
     // zwroci nowego taska
-    public Task toTask() {
-        return new Task(description, deadline);
+    public Task toTask(TaskGroup group) {
+        return new Task(description, deadline, group);
     }
 }
 

@@ -20,4 +20,6 @@ public interface TaskRepository {
     Task save(Task entity);
 
     Page<Task> findAll(Pageable pageable);
+
+    List<Task>findByDone(boolean state);
 }
