@@ -4,6 +4,8 @@ Technologies:
 - Spring 5
 - html 5
 - JUnit
+- Mockito
+- AssertJ
 - H2
 - Hibernate
 - Thymeleaf
