@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 // wszystkie klasy model z projection (dto) okreslaja jak encja powinna wygladac dla uzytkownika
 public class GroupReadModel {
+    private int id;
     private String description;
     // deadliine ostatniego taska w grupie
     private LocalDateTime deadline;
@@ -17,6 +18,7 @@ public class GroupReadModel {
 
     // konstruktor pobierajacy faktyczna grupe
     public GroupReadModel(TaskGroup source) {
+        id = source.getId();
         description = source.getDescription();
         // stream bo w taskGroup task jest zbiorem. Zwroci najwyzsza date i przypisze pod deadline
         source.getTasks().stream()
@@ -50,5 +52,13 @@ public class GroupReadModel {
 
     public void setTasks(Set<GroupTaskReadModel> tasks) {
         this.tasks = tasks;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

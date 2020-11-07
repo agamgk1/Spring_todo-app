@@ -5,6 +5,7 @@ import com.spring.course.model.*;
 import com.spring.course.model.projection.GroupReadModel;
 import com.spring.course.model.projection.GroupTaskWriteModel;
 import com.spring.course.model.projection.GroupWriteModel;
+import com.spring.course.model.projection.ProjectWriteModel;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,15 +24,13 @@ public class ProjectService {
         this.taskGroupRepository = taskGroupRepository;
         this.taskGroupService = taskGroupService;
         this.config = config;
-
     }
-
-    private List<Project> readAll() {
+    public List<Project> readAll() {
         return repository.findAll();
     }
 
-    private Project save(Project toSave) {
-        return repository.save(toSave);
+    public Project save(ProjectWriteModel toSave) {
+        return repository.save(toSave.toProject());
     }
 
     // tworzenie grupy dla danego projektu
@@ -56,7 +55,7 @@ public class ProjectService {
                                     ).collect(Collectors.toSet())
 
                             );
-                   return taskGroupService.createGroup(targetGroup);
+                   return taskGroupService.createGroup(targetGroup, project);
                 }).orElseThrow(() -> new IllegalArgumentException("Project with given id not found"));
     }
 }

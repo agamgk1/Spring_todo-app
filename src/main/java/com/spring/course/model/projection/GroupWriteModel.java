@@ -1,5 +1,6 @@
 package com.spring.course.model.projection;
 
+import com.spring.course.model.Project;
 import com.spring.course.model.TaskGroup;
 
 import java.util.Set;
@@ -25,13 +26,14 @@ public class GroupWriteModel {
         this.tasks = tasks;
     }
     // zwroci nowa grupe
-    public TaskGroup toGroup() {
+    public TaskGroup toGroup(Project project) {
         var result = new TaskGroup();
         result.setDescription(description);
         result.setTasks(tasks.stream()
                 .map(source -> source.toTask(result))
                 .collect(Collectors.toSet())
         );
+        result.setProject(project);
         return result;
     }
 }

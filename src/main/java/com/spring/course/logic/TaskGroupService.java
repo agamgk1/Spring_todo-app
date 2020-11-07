@@ -1,5 +1,6 @@
 package com.spring.course.logic;
 
+import com.spring.course.model.Project;
 import com.spring.course.model.TaskGroup;
 import com.spring.course.model.TaskGroupRepository;
 import com.spring.course.model.TaskRepository;
@@ -27,10 +28,12 @@ public class TaskGroupService {
     }
     // metoda tworzaca grupe z writemodel
     public GroupReadModel createGroup(final GroupWriteModel source) {
-        TaskGroup result = repository.save(source.toGroup());
+       return createGroup(source, null);
+    }
+    GroupReadModel createGroup(GroupWriteModel source, Project project) {
+        TaskGroup result = repository.save(source.toGroup(project));
         return new GroupReadModel(result);
     }
-
     // metoda umozliwiajaca czytanie grup
     public List<GroupReadModel> readAll() {
        return repository.findAll()
@@ -49,6 +52,7 @@ public class TaskGroupService {
         result.setDone(!result.isDone());
         repository.save(result);
     }
+
 
 }
 

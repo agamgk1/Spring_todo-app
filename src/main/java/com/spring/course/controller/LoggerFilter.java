@@ -25,6 +25,7 @@ class LoggerFilter implements Filter{
         }
         //wejscie w łańcuch procesowań
         chain.doFilter(request, response);
+
     }
 
 }

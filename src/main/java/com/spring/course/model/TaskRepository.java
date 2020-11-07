@@ -22,4 +22,6 @@ public interface TaskRepository {
     Page<Task> findAll(Pageable pageable);
 
     List<Task>findByDone(boolean state);
+
+    List<Task> findAllByGroup_Id(Integer groupId);
 }
