@@ -4,6 +4,7 @@ import com.spring.course.model.Task;
 import com.spring.course.model.TaskGroup;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,8 @@ public class GroupReadModel {
         // stream bo w taskGroup task jest zbiorem. Zwroci najwyzsza date i przypisze pod deadline
         source.getTasks().stream()
                 .map(Task::getDeadline)
+                //filtrowanie zeby nie było nulla
+                .filter(Objects::nonNull)
                 .max(LocalDateTime::compareTo)
                 .ifPresent(date -> deadline = date);
         tasks = source.getTasks().stream()
