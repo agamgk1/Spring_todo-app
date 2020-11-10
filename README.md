@@ -2,11 +2,16 @@
 Technologies: 
 - Java 11
 - Spring 5
+- Spring Boot 2
 - html 5
 - JUnit
 - Mockito
 - AssertJ
-- H2
+- Data
 - Hibernate
+- AOP
+- Security
 - Thymeleaf
 - Flyaway
+- Maven
+- Dependency Injection
