@@ -6,6 +6,8 @@ import com.spring.course.model.ProjectStep;
 import com.spring.course.model.projection.ProjectWriteModel;
 import io.micrometer.core.annotation.Timed;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,19 +19,26 @@ import java.util.List;
 
 //klasa ktora bedzie wyświetlała okno projects.html - w return
 //Model podwoli na komunikacje pomiedzy szablonem (project.html) a kontrolerem, przekazanie komunikatów itp, wysyłanie wiadomości
+//Definicja Autoruzacji w adnotacji na klasie - do projektu maga wejsc tylko uzytkownicy z rola admin
 @Controller
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/projects")
 class ProjectController {
     private final ProjectService service;
 
-    ProjectController(ProjectService service) {
+    ProjectController(final ProjectService service) {
         this.service = service;
     }
 
+    // metoda get + autoryzacja uzytkownika wchodzącego. Principal - zawiera info o uzytkowniku - nazwa itp
     @GetMapping
-    String showProjects(Model model) {
-        model.addAttribute("project", new ProjectWriteModel());
-        return "projects";
+    String showProjects(Model model, Authentication auth) {
+        //pobiera wszystkie uprawninia uzytkownika i szuka roli admin(musi byc pelna nazwa ROLE_ADMIN)
+   //     if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            model.addAttribute("project", new ProjectWriteModel());
+            return "projects";
+   //     }
+   //     return "index";
     }
     // BindingResult sluzy do walidacji, sprawdza czy poprzedni argument (projectWriteModel) miał jakies bledy)
     // @Valid musi byc dodane. Valid uwzgledni wszystkie walidacje NotBlank: z ProjectWroteModel, ProjectStep

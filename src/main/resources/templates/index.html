@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,8 @@
     <p>Doing all the things!</p>
     <nav>
         <ul>
-            <li>
+            <!--trzeba dać dodatkową zależność w pom.xml thymeleaf sprong security 5*/-->
+            <li sec:authorize="hasRole('ADMIN')">
                 <a href="/projects">Projekty</a>
             </li>
             <li>
