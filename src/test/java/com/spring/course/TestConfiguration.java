@@ -16,14 +16,6 @@ import java.util.*;
 @Configuration
 class TestConfiguration {
 
-
-
-    // @Primary Adnotacja ta apowoduje ze repozytorium zdefiniowane w tescie jest glowne i zawsze bedzie uzywane w tescie
-   // @ConditionalOnMissingBean te repozytorium obowiazuje tylko wtedy jezeli nie ma zdefiniowanego zadnego innego repozytorium
-        // @Profile("integration) - powoduje ze tylko jak wlaczymy aplikacje z profilem integration stworzy sie task repozitory ponizej
-    //w przeciwnym wypadku odpali sie standardowe repozytorium czyli sqlTasksRepozitory
-    // @primary konieczne do tego aby ten bean stal sie beanem glownym
-    //DataSource konfiguracja do zrodla danych
   @Bean
   @Primary
   @Profile("!integration")
@@ -63,8 +55,6 @@ class TestConfiguration {
             @Override
             public Task save(Task entity) {
                  int key = tasks.size() + 1;
-
-            //DOSTEP PRZEZ REFLEKSJE
                 try {
                     var field =  Task.class.getDeclaredField("id");
                     field.setAccessible(true);
@@ -92,5 +82,4 @@ class TestConfiguration {
             }
         };
     }
-
 }
