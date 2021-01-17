@@ -61,7 +61,6 @@ class TaskGroupController {
         return "groups";
     }
 
-    // ResponseBody dodane ze względu na to ze mamy @Controller zamiast @RestController ()dodajemy tam gdzie nie zwracamy teksu html np"groups"
     @ResponseBody
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<GroupReadModel> createGroup(@RequestBody @Valid GroupWriteModel toCreate) {
