@@ -16,7 +16,6 @@ class PersistedTaskEvent {
     String name;
     LocalDateTime occurrence;
 
-    // ze względu na JPA musi być dodany bezparametrowy konstruktor
     public PersistedTaskEvent() {
     }
 
