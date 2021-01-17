@@ -1,6 +1,7 @@
 # Spring Todo-app
 
 Application based on Java Spring Framework Udemy course
+Application allow to create new todos, groups, projects and save it in database
 
 Technologies: 
 - Java 11
