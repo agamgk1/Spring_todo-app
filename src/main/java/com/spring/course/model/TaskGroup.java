@@ -13,9 +13,6 @@ public class TaskGroup {
     @NotBlank(message = "Task group's description must not be null and not empty")  //adnotacja służąca do validacji - zaklada ze opis (pole) nie moze byc pusty albo null albo same spacj itp
     private String description;
     private boolean done;
-    // jezeli w tasku bylo manytoone to tutaj musi byc OneToMany + zbiór taskow + public getter
-    // cascade.all - jezeli usuwamy grupe to usuwamy jej wszyskie taski
-    // mapped - pokazanie ze wewnatrztaska grupa zmapowana jest jako pole grup
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="group")
     private Set<Task> tasks;
     @ManyToOne
