@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 class SsoController {
-    //metoda służąca do wylogowania (wchodzimy na stronę /logout i następuje wylogowanie i powrót do strony startowej)
     @GetMapping("/logout")
     String logout(HttpServletRequest request) throws ServletException {
         request.logout();
