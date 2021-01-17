@@ -8,23 +8,17 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-// wszystkie klasy model z projection (dto) okreslaja jak encja powinna wygladac dla uzytkownika
 public class GroupReadModel {
     private int id;
     private String description;
-    // deadliine ostatniego taska w grupie
     private LocalDateTime deadline;
-    // zbior taskow do odczytu
     private Set<GroupTaskReadModel> tasks;
 
-    // konstruktor pobierajacy faktyczna grupe
     public GroupReadModel(TaskGroup source) {
         id = source.getId();
         description = source.getDescription();
-        // stream bo w taskGroup task jest zbiorem. Zwroci najwyzsza date i przypisze pod deadline
         source.getTasks().stream()
                 .map(Task::getDeadline)
-                //filtrowanie zeby nie było nulla
                 .filter(Objects::nonNull)
                 .max(LocalDateTime::compareTo)
                 .ifPresent(date -> deadline = date);
