@@ -13,11 +13,8 @@ public class Project {
     private int id;
     @NotBlank(message = "Project's description must not be empty")
     private String description;
-    // projekt bedzie posiadal liste wszystkich grup
     @OneToMany(mappedBy = "project")
     private Set<TaskGroup> groups;
-    // projekt bedzie posiadal liste wszystkich project step
-    // plus przy kazdej zmianie projektu zmieniamy wszyskie jego kroki - cascade
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<ProjectStep> steps;
 
