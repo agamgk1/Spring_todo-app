@@ -7,9 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
-
-// Faktyczny task powstaje wlasnie z tego Grouptaska
-// task wysylany w obrebie grupy
 public class GroupTaskWriteModel {
     @NotBlank(message = "Task's description must not be empty")
     private String description;
