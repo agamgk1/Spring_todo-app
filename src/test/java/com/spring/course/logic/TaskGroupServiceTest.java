@@ -63,5 +63,4 @@ class TaskGroupServiceTest {
         //then
         assertThat(taskGroup.isDone()).isEqualTo(!beforeToggle);
     }
-
 }
