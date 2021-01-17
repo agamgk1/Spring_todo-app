@@ -23,16 +23,13 @@ class ProjectServiceTest {
     @DisplayName("should IllegalStateException when configured to allow just 1 group and the oder undone group exists")
     void createGroup_noMultipleGroupsConfig_And_openGroupsExists_throwsIllegalStateException() {
         //given
-        //zaczytanie klasy do mockito mock() i później zaimplementowanie metody z tej klasy when() i przypisanie wartosci true dla dowolnego integera
         TaskGroupRepository mockGroupRepository =  groupRepositoryReturning(true);
         //and
         TaskConfigurationProperties mockConfig = configurationReturning(false);
         // system under test
         var toTest = new ProjectService(null,mockGroupRepository,null, mockConfig);
-
-        //when  Wywołanie metody createGroup + wywołanie wyjatku (assertJ)
+        //when  
         var exception = catchThrowable(() -> toTest.createGroup(LocalDateTime.now(), 0));
-
         //then
         assertThat(exception).isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("one undone group");
@@ -46,7 +43,6 @@ class ProjectServiceTest {
         TaskConfigurationProperties mockConfig = configurationReturning(true);
         // system under test
         var toTest = new ProjectService(mockRepository, null, null, mockConfig);
-
         //when
         var exception = catchThrowable(() -> toTest.createGroup(LocalDateTime.now(), 0));
         //then
@@ -74,7 +70,6 @@ class ProjectServiceTest {
                 .hasMessageContaining("id not found");
     }
 
-
     @Test
     @DisplayName("Should create new group from project")
     void create_group_configurationOk_exitingProject_createsAndSavesGroup() {
@@ -101,7 +96,6 @@ class ProjectServiceTest {
         assertThat(result.getTasks()).allMatch(task -> task.getDescription().equals("foo"));
         assertThat(countBeforeCall +1).isEqualTo(inMemoryGroupRepo.count());
     }
-
 
     private TaskGroupService dummyGroupService(InMemoryGroupRepository inMemoryGroupRepo) {
         return new TaskGroupService(inMemoryGroupRepo, null);
@@ -136,7 +130,6 @@ class ProjectServiceTest {
         when(mockConfig.getTemplate()).thenReturn(mockTemplate);
         return mockConfig;
     }
-
 
     private InMemoryGroupRepository inMemoryGroupRepository() {
         return new InMemoryGroupRepository();
