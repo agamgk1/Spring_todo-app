@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-// publiczne repozytorium z metodami udostepnionymi publicznie dla klasy (tabeli) Task
 public interface TaskRepository {
 
     List<Task> findAll();
