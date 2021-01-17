@@ -4,8 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-// adnotacja ktora pozwala na obsługę błędów z innych kontrolerów, które będzą oznaczone adnotacja IllegalExceptionProcessing. Każdy kontroler w ktorym pojawi sie illegalStateException
-// będzie obsłużony tutaj
 @RestControllerAdvice(annotations = IllegalExceptionProcessing.class)
 class IllegalExceptionControllerAdvice {
 
