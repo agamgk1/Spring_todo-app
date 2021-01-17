@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-//klasa służąca do asynchronicznej obsługi zapytań (uruchamiajac dodatkowy watek w tle)
 @Service
 public class TaskService {
     public static final Logger logger = LoggerFactory.getLogger(TaskService.class);
@@ -19,9 +18,7 @@ public class TaskService {
     TaskService(TaskRepository repository) {
         this.repository = repository;
     }
-    // Konieczna adnotacja Async
-    // akcja odroczona w czasie ktora dzije sie na osobnej, wspoldzielonej puli watkow - CompletableFuture
-    // +metoda supplyAsynch
+    
     @Async
     public CompletableFuture<List<Task>> findAllAsync() {
         logger.info("Supply async");
