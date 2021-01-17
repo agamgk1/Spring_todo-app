@@ -2,13 +2,10 @@ package com.spring.course.model.projection;
 
 import com.spring.course.model.Task;
 
-// task czytany w obrebie grupy
-// powienien powstawac z innego taska
 public class GroupTaskReadModel {
     private boolean done;
     private String description;
-
-    // konstruktor - tworzy z innego taska
+    
     public GroupTaskReadModel(Task source) {
         description = source.getDescription();
         done = source.isDone();
