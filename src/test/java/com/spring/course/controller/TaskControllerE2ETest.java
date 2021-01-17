@@ -12,18 +12,12 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-// w testach end to end faktycznie uruchamia sie aplikacja i symulujemy akcje uzytkownika
-// webEnviroment - umozliwia uruchomienie aplikacji na jakims porcie
-// zmiana profilu na integration
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TaskControllerE2ETest {
 
-    // wstrzykniecie nu,ery portu z webEnvironment
     @LocalServerPort
     private int port;
 
-    //TestRestTemplate - klasa pozwalajaca na odpytanie istniejacych usług
     @Autowired
     private TestRestTemplate restTemplate;
 
@@ -37,7 +31,7 @@ class TaskControllerE2ETest {
         repo.save(new Task("foo", LocalDateTime.now()));
         repo.save(new Task("bar", LocalDateTime.now()));
 
-        //when // symulacja wywolania listy wszystkich taskow
+        //when 
         Task[] result = restTemplate.getForObject("http:/localhost:" + port +"/tasks", Task[].class);
 
         //then
