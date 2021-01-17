@@ -13,16 +13,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.time.LocalDateTime;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
-//AutoConfiureMockMvs - adnotacja dla testow integracyjnych
-//MockMvc - klasa ułatwiajaca testy integracyjne
 @SpringBootTest
 @AutoConfigureMockMvc
  @ActiveProfiles("integration")
 class TaskControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private TaskRepository repo;
 
