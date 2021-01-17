@@ -33,7 +33,6 @@ public class ProjectService {
         return repository.save(toSave.toProject());
     }
 
-    // tworzenie grupy dla danego projektu
     public GroupReadModel createGroup(LocalDateTime deadline, int projectId) {
 
         if (!config.getTemplate().isAllowMultipleTasks() && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
