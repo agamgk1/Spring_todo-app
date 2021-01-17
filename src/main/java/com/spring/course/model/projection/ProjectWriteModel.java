@@ -12,8 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ProjectWriteModel {
-    // notacje walidacyjne
-    //@Validate - po to żeby zostałe uwzględnione walidacje z ProjectStep + umożliwi wyswietlenie walidacji na ekranie aplikacji
+   
     @NotBlank(message = "Project's description must not be empty")
     private String description;
     @Valid
