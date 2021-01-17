@@ -1,6 +1,7 @@
 # Spring Todo-app
 
 Application based on Java Spring Framework Udemy course
+
 Technologies: 
 - Java 11
 - Spring 5
