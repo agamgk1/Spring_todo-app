@@ -18,14 +18,11 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-//@WebMvcTest - adnotacja do testow integracyjnych. Z wpisana klasa ktora ma uruchomic sie w trakcie testow
-//MockMvc - klasa ułatwiajaca testy integracyjne
 @WebMvcTest(TaskController.class)
 class TaskControllerLightIntegrationTest {
+    
     @Autowired
     private MockMvc mockMvc;
-
-    //adnotacja z mockito zeby mokowac jakiegos Beana
     @MockBean
     private TaskRepository repo;
 
