@@ -7,7 +7,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import javax.validation.Validator;
 
-//@EnableAsync konieczne aby uwzglednione byly klasy "asynchroniczne"
 @EnableAsync
 @SpringBootApplication
 public class TodoAppApplication {
@@ -18,9 +17,8 @@ public class TodoAppApplication {
 	}
 
 	@Bean
-	Validator validator() { //obiekt validator bedzie zarzadzalny przez springs dizieki adnotacjii bean. W klasie z konfoguracjia (rowniez z adnotaja SpringBootApplication) powinno znalezc sie cos takiego
+	Validator validator() { 
 		return new LocalValidatorFactoryBean();
 		
 	}
-	}
-
+}
