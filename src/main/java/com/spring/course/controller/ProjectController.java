@@ -30,18 +30,13 @@ class ProjectController {
         this.service = service;
     }
 
-    // metoda get + autoryzacja uzytkownika wchodzącego. Principal - zawiera info o uzytkowniku - nazwa itp
     @GetMapping
     String showProjects(Model model, Authentication auth) {
-        //pobiera wszystkie uprawninia uzytkownika i szuka roli admin(musi byc pelna nazwa ROLE_ADMIN)
-   //     if(auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+     
             model.addAttribute("project", new ProjectWriteModel());
             return "projects";
-   //     }
-   //     return "index";
     }
-    // BindingResult sluzy do walidacji, sprawdza czy poprzedni argument (projectWriteModel) miał jakies bledy)
-    // @Valid musi byc dodane. Valid uwzgledni wszystkie walidacje NotBlank: z ProjectWroteModel, ProjectStep
+    
     @PostMapping
     String addProject(@ModelAttribute("project") @Valid ProjectWriteModel current,
                       BindingResult bindingResult,
@@ -52,23 +47,15 @@ class ProjectController {
         }
         service.save(current);
         model.addAttribute("project", new ProjectWriteModel());
-        // nadpisanie atrybutu "projects" w celu odswiezenia strony
         model.addAttribute("projects", getProjects());
-        //message zostanie wysłane do <h1> w projects.html
-        // dodano projekt wyswietli sie po nacisnieciu przycisku z subbmit
         model.addAttribute("message", "Dodano projekt!");
         return "projects";
     }
-    //"addStep" parametr przypisany do przycisku "+" w projects.html. Plus dodatkowo trzeba dodac @ModelAtribute.
-    //Metoda tworzy nowy krok
-    //ModelAtribute - pozwala na zachowanie "project"
     @PostMapping(params = "addStep")
     String addProjectStep(@ModelAttribute("project") ProjectWriteModel current) {
         current.getSteps().add(new ProjectStep());
         return "projects";
     }
-    //@DateTimeFormat - wskazanie w jakim formacie ma byc obslugiwana data
-    // @Timed adnotacja służąca do pomiaru czasu, value = nazwa metryki
     @Timed(value = "project.create.group",histogram = true, percentiles = {0.5, 0.95, 0.99})
     @PostMapping("/{id}")
     String createGroup(
@@ -85,7 +72,7 @@ class ProjectController {
         }
         return "projects";
     }
-
+    
     @ModelAttribute("projects")
     List<Project> getProjects() {
         return service.readAll();
